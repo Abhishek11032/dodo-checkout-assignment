@@ -1,0 +1,8 @@
+{
+  "name": "dodo-checkout-assignment",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}
