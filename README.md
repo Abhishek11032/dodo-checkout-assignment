@@ -59,6 +59,7 @@ https://dodo-checkout-assignment-demo-site-indol.vercel.app/
 - Processing state
 - Success state
 - Failure state
+- Retry payment scenario support
 
 ### User Experience
 
@@ -242,7 +243,7 @@ DodoCheckout.open({
 |------------|----------|
 | 4242 4242 4242 4242 | Successful Payment |
 | 4000 0000 0000 0002 | Declined Payment |
-| 4000 0000 0000 0341 | Retry Payment |
+| 4000 0000 0000 0341 | Fails Once, Then Succeeds On Retry |
 
 ---
 
@@ -250,32 +251,46 @@ DodoCheckout.open({
 
 ### Why SDK?
 
-To allow third-party applications to integrate checkout without embedding checkout logic directly.
+The assignment required the checkout experience to be reusable across applications. Creating a dedicated SDK allows external applications to integrate checkout functionality without embedding checkout logic directly.
 
 ### Why postMessage?
 
-The checkout runs inside an iframe and communicates securely with the parent application.
+The checkout runs inside an iframe and needs a safe communication mechanism with the parent application. The browser's postMessage API provides a clean and secure way to exchange events between isolated applications.
 
 ### Why TypeScript?
 
-Provides type safety, maintainability, and better developer experience.
+TypeScript provides compile-time type safety, improves maintainability, and creates a better developer experience when consuming the SDK.
 
 ### Why Centralized Events?
 
-To avoid magic strings and keep communication consistent across applications.
+Using centralized event names avoids magic strings and ensures consistent communication between the Checkout App, SDK, and Demo Site.
 
 ---
 
-# Future Improvements
+# Decisions I Went Back And Forth On
+
+### 1. Popup Window vs Iframe Modal
+
+Initially I considered opening the checkout in a separate popup window. I ultimately chose an iframe modal because it provides a smoother user experience, keeps users on the host application, and more closely resembles modern embedded checkout systems.
+
+### 2. Direct SDK Communication vs postMessage
+
+I considered exposing direct communication methods between the checkout and the host application. I chose postMessage because the checkout runs in an isolated iframe, making event-based communication more secure, scalable, and browser-friendly.
+
+---
+
+# What I Would Explore Next
 
 - Real payment gateway integration
-- Backend session validation
-- Automated testing
-- CI/CD pipeline
-- Analytics tracking
-- Error monitoring
-- SDK package publishing
-- Accessibility audit
+- Backend checkout session validation
+- Automated testing (Unit + Integration)
+- CI/CD pipeline setup
+- Analytics and event tracking
+- Error monitoring and reporting
+- Publishing the SDK as an npm package
+- Accessibility audit and improvements
+- Session persistence and recovery
+- Multi-product checkout support
 
 ---
 
