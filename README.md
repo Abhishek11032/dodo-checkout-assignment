@@ -164,7 +164,7 @@ Implemented:
 
 - Origin validation
 - Duplicate modal prevention
-- Listener cleanup
+- Event listener cleanup
 - Scroll restoration
 - Encoded query parameters
 
@@ -186,33 +186,25 @@ Install dependencies:
 npm install
 ```
 
----
-
-Start Checkout App:
+### Start Checkout App
 
 ```bash
 npm run dev --workspace=checkout-app
 ```
 
----
-
-Start Demo Site:
+### Start Demo Site
 
 ```bash
 npm run dev --workspace=demo-site
 ```
 
----
-
-Build Checkout App:
+### Build Checkout App
 
 ```bash
 npm run build --workspace=checkout-app
 ```
 
----
-
-Build Demo Site:
+### Build Demo Site
 
 ```bash
 npm run build --workspace=demo-site
@@ -246,23 +238,11 @@ DodoCheckout.open({
 
 # Test Cards
 
-### Successful Payment
-
-```text
-4242 4242 4242 4242
-```
-
-### Failed Payment
-
-```text
-4000 0000 0000 0002
-```
-
-### Retry Scenario
-
-```text
-4000 0000 0000 9995
-```
+| Card Number | Scenario |
+|------------|----------|
+| 4242 4242 4242 4242 | Successful Payment |
+| 4000 0000 0000 0002 | Declined Payment |
+| 4000 0000 0000 0341 | Retry Payment |
 
 ---
 
