@@ -1,30 +1,10 @@
-import type {
-  PaymentSuccessPayload,
-  PaymentErrorPayload,
-  CheckoutClosePayload,
-} from "../../../apps/checkout-app/src/types/payment.types";
+import type { CheckoutOptions } from "./types";
 
-export interface CheckoutOptions {
-  productId: string;
-  checkoutUrl?: string;
 
-  onSuccess?: (
-  data: PaymentSuccessPayload
-) => void;
-
-onClose?: (
-  data: CheckoutClosePayload
-) => void;
-
-onError?: (
-  data: PaymentErrorPayload
-) => void;
-}
 
 class DodoCheckoutSDK {
   private overlay: HTMLDivElement | null = null;
 
-  private iframe: HTMLIFrameElement | null = null;
 
   private scrollY = 0;
 
@@ -123,7 +103,6 @@ class DodoCheckoutSDK {
       "hidden";
 
     this.overlay = overlay;
-    this.iframe = iframe;
 
     const allowedOrigin =
       new URL(checkoutUrl).origin;
@@ -207,7 +186,6 @@ class DodoCheckoutSDK {
       this.scrollY
     );
 
-    this.iframe = null;
 
     if (this.messageHandler) {
       window.removeEventListener(
