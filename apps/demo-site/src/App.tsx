@@ -29,7 +29,7 @@ function App() {
     DodoCheckout.open({
       productId: "prod_123",
 
-      checkoutUrl: "http://localhost:5173",
+      checkoutUrl: "https://dodo-checkout-assignment-checkout-a-opal.vercel.app/",
 
       onSuccess: ({ sessionId }) => {
         addLog(

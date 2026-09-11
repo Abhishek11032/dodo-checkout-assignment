@@ -48,7 +48,7 @@ class DodoCheckoutSDK {
 
     const checkoutUrl =
       options.checkoutUrl ??
-      "http://localhost:5173";
+      "https://dodo-checkout-assignment-checkout-a-opal.vercel.app/";
 
     const overlay =
       document.createElement("div");
