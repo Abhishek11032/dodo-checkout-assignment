@@ -10,6 +10,18 @@ The project is organized as a monorepo and consists of:
 
 ---
 
+# Live Demo
+
+### Checkout App
+
+https://dodo-checkout-assignment-checkout-a-opal.vercel.app/
+
+### Demo Store
+
+https://dodo-checkout-assignment-demo-site-indol.vercel.app/
+
+---
+
 # Features
 
 ## Checkout SDK
@@ -104,7 +116,7 @@ dodo-checkout-assignment
 
 # Architecture
 
-## Checkout SDK
+## Checkout SDK Responsibilities
 
 The SDK is responsible for:
 
@@ -116,7 +128,7 @@ The SDK is responsible for:
 - Security validation
 - Cleanup
 
-Flow:
+### Flow
 
 ```text
 Demo Site
@@ -134,7 +146,7 @@ SDK Callback
 
 ---
 
-## Event Communication
+# Event Communication
 
 Communication between the SDK and Checkout App is handled using centralized events:
 
@@ -179,8 +191,7 @@ npm install
 Start Checkout App:
 
 ```bash
-cd apps/checkout-app
-npm run dev
+npm run dev --workspace=checkout-app
 ```
 
 ---
@@ -188,17 +199,23 @@ npm run dev
 Start Demo Site:
 
 ```bash
-cd apps/demo-site
-npm run dev
+npm run dev --workspace=demo-site
 ```
 
 ---
 
-Build SDK:
+Build Checkout App:
 
 ```bash
-cd packages/sdk
-npm run build
+npm run build --workspace=checkout-app
+```
+
+---
+
+Build Demo Site:
+
+```bash
+npm run build --workspace=demo-site
 ```
 
 ---
@@ -206,7 +223,7 @@ npm run build
 # SDK Usage
 
 ```ts
-import { DodoCheckout } from "your-sdk";
+import { DodoCheckout } from "@dodo/sdk";
 
 DodoCheckout.open({
   productId: "prod_123",
@@ -223,6 +240,28 @@ DodoCheckout.open({
     console.log(data.reason);
   },
 });
+```
+
+---
+
+# Test Cards
+
+### Successful Payment
+
+```text
+4242 4242 4242 4242
+```
+
+### Failed Payment
+
+```text
+4000 0000 0000 0002
+```
+
+### Retry Scenario
+
+```text
+4000 0000 0000 9995
 ```
 
 ---
@@ -262,7 +301,7 @@ To avoid magic strings and keep communication consistent across applications.
 
 # Author
 
-Abhishek Tiwari
+**Abhishek Tiwari**
 
 Frontend Developer
 
